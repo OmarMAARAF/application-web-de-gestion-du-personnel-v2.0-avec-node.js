@@ -158,6 +158,7 @@
         <script>
           function display(res){
             const tbody = document.querySelector('table');
+            tbody.textContent=""
             const e =document.createElement('tbody')
             demandes = res.data.demande
             let table=``
@@ -295,37 +296,31 @@
             })
             e.innerHTML= table
             tbody.appendChild(e);
-            /* Rbtn=document.getElementById('refus');
-            Rbtn.addEventListener('click',()=>{
-              
-              id = Rbtn.getAttribute('data');
-              axios.post('/api/refuseDmd',{id}).then((res)=>{
-                if(res.data.status ==='ok'){
-                  location.reload(true)
-                }
-              })
-            })
-
-            Vbtn=document.getElementById('valide');
-            console.log("here1")
-            console.log(Vbtn);
-            Vbtn.addEventListener('click',()=>{
-              console.log("here2")
-              id = Vbtn.getAttribute('data');
-              console.log(id)
-
-              axios.post('/api/valideDmd',{id}).then((res)=>{
-                if(res.data.status ==='ok'){
-                  location.reload(true)
-                }
-              })
-            })
-             */
+           
         }
         
-      
-          axios.get('./api/getdemande').then((res)=>display(res))
 
+          axios.get('./api/getdemande').then((res)=>display(res))
+          getNotification()
+
+          
+          // Create WebSocket connection.
+              const socket = new WebSocket('ws://localhost:3000');
+
+              // Connection opened
+              socket.addEventListener('open', function (event) {
+                  console.log('Connected to WS Server')
+              });
+              // Listen for messages
+              socket.addEventListener('message', function (event) {
+                getNotification()
+                axios.get('./api/getdemande').then((res)=>display(res))
+                console.log("new demande")
+                
+              });
+
+
+    
           
         </script>
         <script src="../../assets/plugins/jquery/jquery-3.4.1.min.js"></script>

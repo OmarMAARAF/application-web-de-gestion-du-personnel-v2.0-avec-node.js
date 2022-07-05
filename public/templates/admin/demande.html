@@ -109,6 +109,17 @@
                                             Votre demande a été Envoyée avec succes
                                         </div>`
                     respond.appendChild(e)
+
+
+                    //socket Connection
+                    const socket = new WebSocket('ws://localhost:3000');
+
+                    // Connection opened
+                    socket.addEventListener('open', function (event) {
+                        console.log(res.data);
+                        console.log('Connected to WS Server')
+                        socket.send(JSON.stringify(res.data));
+                    });
                 }
                 else {
                     e.innerHTML=`<div class="alert alert-${res.data.badge}" role="alert">
@@ -118,6 +129,10 @@
 
 
                 }
+
+                
+                
+                
 
             }
 
@@ -134,6 +149,9 @@
                 .then((res)=>checking(res))
 
             }
+           
+
+
         </script>
         <script src="../../assets/plugins/jquery/jquery-3.4.1.min.js"></script>
         <script src="https://unpkg.com/@popperjs/core@2"></script>

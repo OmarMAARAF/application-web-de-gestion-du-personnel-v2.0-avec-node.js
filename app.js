@@ -7,6 +7,23 @@ const WebSocket =require('ws');
 var server1 = require('http').createServer(app);
 require('dotenv').config()
 
+const wss = new WebSocket.Server({ server:server1 });
+
+wss.on('connection', function connection(ws) {
+    
+    ws.on('message', function incoming(message) {
+      console.log('received: %s', message);
+  
+      wss.clients.forEach(function each(client) {
+        if (client !== ws && client.readyState === WebSocket.OPEN) {
+          client.send(message);
+        }
+      });
+      
+    });
+  });
+
+
 //middleware
 app.use(express.static(path.join(__dirname,'public')))
 app.use('/',express.static(path.join(__dirname,'public/templates/admin/')))
@@ -15,14 +32,7 @@ app.use(express.json())
 app.use('/api',router)
 
 
-const wss =new WebSocket.Server({server : server1})
-wss.on('connection', function connection(ws) {
-    console.log("Connected to Server")
-    ws.on('message', function message(data) {
-      console.log('received: %s', data);
-    });
-    ws.send('something');
-});
+
 
 
 

@@ -19,6 +19,7 @@ const valideDmd =async(req,res)=>{
 
 const getdemande = async (req,res)=>{
     try{
+
         const allDmd1= await demande.find({etat:'En attente'}) 
         const allDmd2= await demande.find({etat:'valide'})
         const allDmd3= await demande.find({etat:'refus'})
@@ -35,6 +36,10 @@ const getdemande = async (req,res)=>{
 const insertDemande=async (req,res) =>{
     const {cin,nb_jour,date_depart,type}=req.body
     const demande1 = await demande.findOne({cin,nb_jour,date_depart,type}).lean()
+
+
+    
+
     if(!demande1){
         const createdemande = demande.create({cin,nb_jour,date_depart,type})
 
