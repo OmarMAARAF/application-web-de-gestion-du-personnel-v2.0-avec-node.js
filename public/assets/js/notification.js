@@ -97,7 +97,7 @@ function displayNotification(txt){
 
     <strong class="me-auto">Nouvelle demande</strong>
     <small class="text-muted">Maintenant</small>
-    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" onclick="closeToast(${i})"></button>
   </div>
   <div class="toast-body">
    Une demande de cin = ${txt}
@@ -119,7 +119,7 @@ function displayNotification(txt){
 
     <strong class="me-auto">Nouvelle demande</strong>
     <small class="text-muted">Maintenant</small>
-    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" onclick="closeToast(${i})"></button>
   </div>
   <div class="toast-body">
    Une demande de cin = ${txt}
@@ -144,4 +144,11 @@ function fadeoutNotification(i){
   templatesNoti=``
   },1000)
 
+}
+
+function closeToast(i){
+  const toast =document.querySelector(`#toast${i}`)
+  toast.remove()
+  templatesNoti=``
+  
 }
