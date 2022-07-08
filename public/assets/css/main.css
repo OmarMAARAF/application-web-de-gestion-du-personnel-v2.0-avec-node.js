@@ -1335,6 +1335,8 @@ body.sidebar-hidden .main-wrapper {
     border-radius: 15px;
     border: none;
     box-shadow: 0 0 1.25rem rgb(31 45 61 / 8%);
+
+    
 }
 
 .toast-header {

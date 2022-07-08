@@ -56,7 +56,7 @@ const insertDemande=async (req,res) =>{
             return res.json({ status: 'error', error: 'Votre demande est en cours de traitement . . .',badge :'warning' })
         }
     }
-    res.json({status:'ok'})//status : 'ok' set the headears
+    res.json({status:'ok',cin:cin})//status : 'ok' set the headears
 }
 
 module.exports ={
