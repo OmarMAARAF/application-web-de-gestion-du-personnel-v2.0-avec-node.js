@@ -137,12 +137,14 @@ function displayNotification(txt){
 
 function fadeoutNotification(i){
   const toast =document.querySelector(`#toast${i}`)
+  if(toast){
   toast.classList.add('hidden');
   console.log("time out")
   setTimeout(()=>{
     toast.remove()
   templatesNoti=``
   },1000)
+}
 
 }
 

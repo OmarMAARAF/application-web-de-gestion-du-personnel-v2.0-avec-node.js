@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Responsive Admin Dashboard Template">
+        <meta name="keywords" content="admin,dashboard">
+        <meta name="author" content="stacks">
+        <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        
+        <!-- Title -->
+        <title>Liste Des Employés</title>
+
+        <!-- Styles -->
+        <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700,800&display=swap" rel="stylesheet">
+        <link href="../../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../assets/plugins/font-awesome/css/all.min.css" rel="stylesheet">
+        <link href="../../assets/plugins/perfectscroll/perfect-scrollbar.css" rel="stylesheet">
+
+      
+        <!-- Theme Styles -->
+        <link href="../../assets/css/main.min.css" rel="stylesheet">
+        <link href="../../assets/css/dark-theme.css" rel="stylesheet">
+        <link href="../../assets/css/custom.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+      <div class='loader'>
+        <div class='spinner-grow text-primary' role='status'>
+          <span class='sr-only'>Loading...</span>
+        </div>
+      </div>
+
+        <div class="page-container">
+          <div class="page-header">
+            <nav class="navbar navbar-expand-lg d-flex justify-content-between">
+              <div class="" id="navbarNav">
+                <ul class="navbar-nav" id="leftNav">
+                  <li class="nav-item">
+                    <a class="nav-link" id="sidebar-toggle" href="#"><i data-feather="arrow-left"></i></a>
+                  </li>
+                  
+                </ul>
+                </div>
+                <div class="logo">
+                  <a class="navbar-brand" href="index.html"></a>
+                </div>
+                <div class="" id="headerNav">
+                  <ul class="navbar-nav" id="Mynav">
+                    <li class="nav-item dropdown">
+                      <a class="nav-link search-dropdown" href="#" id="searchDropDown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i data-feather="search"></i></a>
+                      <div class="dropdown-menu dropdown-menu-end dropdown-lg search-drop-menu" aria-labelledby="searchDropDown">
+                        <form>
+                          <input class="form-control" type="text" placeholder="Type something.." aria-label="Search">
+                        </form>
+                        <h6 class="dropdown-header">Recent Searches</h6>
+                        <a class="dropdown-item" href="#">charts</a>
+                        <a class="dropdown-item" href="#">new orders</a>
+                        <a class="dropdown-item" href="#">file manager</a>
+                        <a class="dropdown-item" href="#">new users</a>
+                      </div>
+                    </li>
+                    
+                    <li class="nav-item dropdown" id="befor">
+                      <a class="nav-link profile-dropdown" href="#" id="profileDropDown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="../../assets/images/avatars/profile-image.png" alt=""></a>
+                      <div class="dropdown-menu dropdown-menu-end profile-drop-menu" aria-labelledby="profileDropDown">
+                        
+                        <a class="dropdown-item" href="#"><i data-feather="log-out"></i>Déconnecter</a>
+                      </div>
+                    </li>
+                  </ul>
+              </div>
+            </nav>
+        </div>
+        <div class="page-sidebar" >
+                <ul class="list-unstyled accordion-menu">
+                  <li class="sidebar-title">
+                    Main
+                  </li>
+                  <li>
+                    <a href="index.html"><i data-feather="home"></i>Dashboard</a>
+                  </li>
+                  <li >
+                    <a href="adduser.html"><i data-feather="plus-circle"></i>Add user</a>
+                  </li>
+                  <li >
+                    <a href="liste_demande.html"><i data-feather="edit"></i>Demandes</a>
+                  </li>
+                  <li class="active-page">
+                    <a href="liste_worker.html"><i data-feather="user"></i>Employés</a>
+                  </li>
+                </ul>
+            </div>
+            <div class="page-content">
+                <div class="main-wrapper">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-11">
+                                            <h2>Liste Des Employés</h2>
+                                        </div>
+                                        
+                                        
+
+
+
+
+
+                                        <div class="col-1">
+                                          <button type="button" class="btn btn-danger m-b-xs" data-bs-toggle="modal" data-bs-target="#addworker">Ajouter</button>
+                                          
+                                      </div>
+
+
+                                    </div>
+
+                                    <form id ="recherche_frm" data="">
+                                    <div class="input-group mb-3">
+                                        <!-- <span class="input-group-text" id="basic-addon1"><i data-feather="search"></i></span> -->
+                                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                          <i data-feather="search"></i>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1" >
+                                          <li><button class="dropdown-item active" type="submit" onclick="recherche_id()">Id</button></li>
+                                          <li><button class="dropdown-item active" type="submit"onclick="recherche_Nom()">Nom</button></li>
+                                          <li><button class="dropdown-item active" type="submit" onclick="recherche_3()">Grade</button></li>
+                                        </ul>
+                                        <input type="text" class="form-control" placeholder="Rechercher" aria-label="Username" aria-describedby="basic-addon1" id="recherche_input">
+                                      
+                                      
+                                    </div>
+                                  </form>
+                                    <!-- Modal -->
+<div class="modal fade" id="addworker" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalScrollableTitle">Ajouter Des Employés</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+        <form id="addworker_frm">
+          <div class="addres"></div>
+          
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">رقم ب ت و</label>
+            <input type="text" class="form-control" id="cin" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">رقم التأجير</label>
+            <input type="text" class="form-control" id="رقم_التأجير" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">الرقم المالي </label>
+            <input type="text" class="form-control" id="الرقم_المالي" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">الإسم الشخصي</label>
+            <input type="text" class="form-control" id="الإسم_الشخصي" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">الإسم العائلي</label>
+            <input type="text" class="form-control" id="الإسم_العائلي" aria-describedby="emailHelp" >
+          </div>
+          
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">الدرجة</label>
+            <input type="text" class="form-control" id="الدرجة" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">الميزانية</label>
+            <input type="text" class="form-control" id="الميزانية" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">الدبلوم</label>
+            <input type="text" class="form-control" id="الدبلوم" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">التعيين</label>
+            <input type="text" class="form-control" id="التعيين" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">المقاطعة</label>
+            <input type="text" class="form-control" id="المقاطعة" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">المصلحة</label>
+            <input type="text" class="form-control" id="المصلحة" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">الجنس</label>
+            <input type="text" class="form-control" id="الجنس" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">age</label>
+            <input type="text" class="form-control" id="age" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">تاريخ الإزدياد</label>
+            <input type="text" class="form-control" id="تاريخ_الإزدياد" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">إضافة الفرق</label>
+            <input type="text" class="form-control" id="إضافة_الفرق" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">تاريخ الإحالة على التقاعد</label>
+            <input type="text" class="form-control" id="التقاعد" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">تاريخ الترقبي في الرتبة</label>
+            <input type="text" class="form-control" id="تاريخ_الترقبي_في_الرتبة" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">تاريخ مفعول الرتبة</label>
+            <input type="text" class="form-control" id="تاريخ_مفعول_الرتبة" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">الرتبة</label>
+            <input type="text" class="form-control" id="الرتبة" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Grade</label>
+            <input type="text" class="form-control" id="Grade" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">AVANCEMENT ANCIENTE</label>
+            <input type="text" class="form-control" id="AVANCEMENT_ANCIENTE" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">AVANCEMENT DATE CONCOURS</label>
+            <input type="text" class="form-control" id="AVANCEMENTDATECONCOURS" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">تاريخ الترقية في لدرجة</label>
+            <input type="text" class="form-control" id="تاريخ_الترقية_في_لدرجة" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">السلم</label>
+            <input type="text" class="form-control" id="السلم" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">تاريخ التوظيف</label>
+            <input type="text" class="form-control" id="تاريخ_التوظيف" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">تاريخ الترسيم</label>
+            <input type="text" class="form-control" id="تاريخ_الترسيم" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">NOM</label>
+            <input type="text" class="form-control" id="NOM" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">PRENOM</label>
+            <input type="text" class="form-control" id="PRENOM" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">مكان الازدياد</label>
+            <input type="text" class="form-control" id="مكان_الازدياد" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">الحالة  العائلية</label>
+            <input type="text" class="form-control" id="الحالة_العائلية" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">الأطفال</label>
+            <input type="text" class="form-control" id="الأطفال" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">CMR</label>
+            <input type="text" class="form-control" id="CMR" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">السنة</label>
+            <input type="text" class="form-control" id="السنة" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">المؤسسة المانحة للدبلوم</label>
+            <input type="text" class="form-control" id="المؤسسة_المانحة_للدبلوم" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">التخصص</label>
+            <input type="text" class="form-control" id="التخصص" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Fonction</label>
+            <input type="text" class="form-control" id="Fonction" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Date de nomination à la fonction</label>
+            <input type="text" class="form-control" id="Date_de_nomination_à_la_fonction" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">وضعية الموظف</label>
+            <input type="text" class="form-control" id="وضعية_الموظف" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">المكان أو الأسباب</label>
+            <input type="text" class="form-control" id="المكان_أو_الأسباب" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">التاريخ ابتداء من</label>
+            <input type="text" class="form-control" id="التاريخ_ابتداء_من" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">تاريخ الالتحاق بالعمالة</label>
+            <input type="text" class="form-control" id="تاريخ_الالتحاق_بالعمالة" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">تعيين_م</label>
+            <input type="text" class="form-control" id="تعيين_م" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Lieu d'affectation+AR:AX</label>
+            <input type="text" class="form-control" id="Lieu_daffectation" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">نوع الموظف</label>
+            <input type="text" class="form-control" id="نوع_الموظف" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">العنوان</label>
+            <input type="text" class="form-control" id="العنوان" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Adresse personnelle</label>
+            <input type="text" class="form-control" id="Adresse_personnelle" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">E_mail</label>
+            <input type="text" class="form-control" id="E_mail" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">télé</label>
+            <input type="text" class="form-control" id="télé" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">ملاحظات</label>
+            <input type="text" class="form-control" id="ملاحظات" aria-describedby="emailHelp" >
+          </div>
+          
+          
+          
+          
+          
+          
+            
+          
+          
+          <button type="submit" class="btn btn-primary" style="margin-bottom: 12px;">Valider</button>
+      </form>
+
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+                                  
+                                    <div class="row">
+                                      <div class="table-responsive">
+                                        <table class="table invoice-table">
+                                            <thead>
+                                              <tr>
+                                                <th scope="col">رقم ب ت و</th>
+                                                <th scope="col">الإسم الشخصي</th>
+                                                <th scope="col">الإسم العائلي</th>
+                                                <th scope="col">الدرجة</th>
+                                                <th scope="col">الميزانية</th>
+                                                <th scope="col">Action</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                             
+                                              
+                                            </tbody>
+                                          </table>
+                                          </div>
+                                    </div>
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+               
+
+
+
+                                  
+                </div>
+              
+            </div>
+        
+        <!-- Javascripts -->
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="../../assets/js/notification.js"></script>
+        <script>
+          
+          function display(res){
+            const tbody = document.querySelector('table');
+            tbody.innerHTML=`
+            <thead>
+                                              <tr>
+                                                <th scope="col">رقم ب ت و</th>
+                                                <th scope="col">الإسم الشخصي</th>
+                                                <th scope="col">الإسم العائلي</th>
+                                                <th scope="col">الدرجة</th>
+                                                <th scope="col">الميزانية</th>
+                                                <th scope="col">Action</th>
+                                              </tr>
+                                            </thead>
+            `
+            const e =document.createElement('tbody')
+            workers = res.data.data
+            let table=``
+            let i=0
+            const disp = workers.forEach((Element)=>{
+              table += `
+              <tr><th scope="row">${Element.cin} </th>
+                                                  <td>${Element. الإسم_الشخصي}</td>
+                                                  <td>${Element.الإسم_العائلي}</td>
+                                                  <td>${Element.الدرجة}</td>`
+             table +=`
+                                                  <td>${Element.الميزانية}</td>
+                                                  <td>
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable${i}">
+                                                      Voir Plus
+                                                    </button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalScrollable${i}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalScrollableTitle">information personnelle </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+                                <div class="res"></div>
+                                <form id="addworker_frm${i}" data="${Element._id}">
+                                  
+                                  <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">رقم ب ت و</label>
+            <input type="text" class="form-control" id="${i}cin" aria-describedby="emailHelp" value="${Element.cin}">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">رقم التأجير</label>
+            <input type="text" class="form-control" id="${i}رقم_التأجير" aria-describedby="emailHelp" value="${Element.رقم_التأجير}">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">الرقم المالي </label>
+            <input type="text" class="form-control" id="${i}الرقم_المالي" aria-describedby="emailHelp" value="${Element.الرقم_المالي}">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">الإسم الشخصي</label>
+            <input type="text" class="form-control" id="${i}الإسم_الشخصي" aria-describedby="emailHelp" value="${Element.الإسم_الشخصي}">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">الإسم العائلي</label>
+            <input type="text" class="form-control" id="${i}الإسم_العائلي" aria-describedby="emailHelp" value="${Element.الإسم_العائلي}" >
+          </div>
+          
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">الدرجة</label>
+            <input type="text" class="form-control" id="${i}الدرجة" aria-describedby="emailHelp" value="${Element.الدرجة}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">الميزانية</label>
+            <input type="text" class="form-control" id="${i}الميزانية" aria-describedby="emailHelp" value="${Element.الميزانية}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">الدبلوم</label>
+            <input type="text" class="form-control" id="${i}الدبلوم" aria-describedby="emailHelp" value="${Element.الدبلوم}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">التعيين</label>
+            <input type="text" class="form-control" id="${i}التعيين" aria-describedby="emailHelp" value="${Element.التعيين}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">المقاطعة</label>
+            <input type="text" class="form-control" id="${i}المقاطعة" aria-describedby="emailHelp" value="${Element.المقاطعة}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">المصلحة</label>
+            <input type="text" class="form-control" id="${i}المصلحة" aria-describedby="emailHelp" value="${Element.المصلحة}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">الجنس</label>
+            <input type="text" class="form-control" id="${i}الجنس" aria-describedby="emailHelp" value="${Element.الجنس}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">age</label>
+            <input type="text" class="form-control" id="${i}age" aria-describedby="emailHelp" value="${Element.age}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">تاريخ الإزدياد</label>
+            <input type="text" class="form-control" id="${i}تاريخ_الإزدياد" aria-describedby="emailHelp" value="${Element.تاريخ_الإزدياد}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">إضافة الفرق</label>
+            <input type="text" class="form-control" id="${i}إضافة_الفرق" aria-describedby="emailHelp" value="${Element.إضافة_الفرق}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">تاريخ الإحالة على التقاعد</label>
+            <input type="text" class="form-control" id="${i}التقاعد" aria-describedby="emailHelp" value="${Element.التقاعد}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">تاريخ الترقبي في الرتبة</label>
+            <input type="text" class="form-control" id="${i}تاريخ_الترقبي_في_الرتبة" aria-describedby="emailHelp" value="${Element.تاريخ_الترقبي_في_الرتبة}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">تاريخ مفعول الرتبة</label>
+            <input type="text" class="form-control" id="${i}تاريخ_مفعول_الرتبة" aria-describedby="emailHelp" value="${Element.تاريخ_مفعول_الرتبة}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">الرتبة</label>
+            <input type="text" class="form-control" id="${i}الرتبة" aria-describedby="emailHelp" value="${Element.الرتبة}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Grade</label>
+            <input type="text" class="form-control" id="${i}Grade" aria-describedby="emailHelp" value="${Element.Grade}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">AVANCEMENT ANCIENTE</label>
+            <input type="text" class="form-control" id="${i}AVANCEMENT_ANCIENTE" aria-describedby="emailHelp" value="${Element.AVANCEMENT_ANCIENTE}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">AVANCEMENT DATE CONCOURS</label>
+            <input type="text" class="form-control" id="${i}AVANCEMENTDATECONCOURS" aria-describedby="emailHelp" value="${Element.AVANCEMENTDATECONCOURS}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">تاريخ الترقية في لدرجة</label>
+            <input type="text" class="form-control" id="${i}تاريخ_الترقية_في_لدرجة" aria-describedby="emailHelp" value="${Element.تاريخ_الترقية_في_لدرجة}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">السلم</label>
+            <input type="text" class="form-control" id="${i}السلم" aria-describedby="emailHelp" value="${Element.السلم}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">تاريخ التوظيف</label>
+            <input type="text" class="form-control" id="${i}تاريخ_التوظيف" aria-describedby="emailHelp" value="${Element.تاريخ_التوظيف}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">تاريخ الترسيم</label>
+            <input type="text" class="form-control" id="${i}تاريخ_الترسيم" aria-describedby="emailHelp" value="${Element.تاريخ_الترسيم}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">NOM</label>
+            <input type="text" class="form-control" id="${i}NOM" aria-describedby="emailHelp" value="${Element.NOM}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">PRENOM</label>
+            <input type="text" class="form-control" id="${i}PRENOM" aria-describedby="emailHelp" value="${Element.PRENOM}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">مكان الازدياد</label>
+            <input type="text" class="form-control" id="${i}مكان_الازدياد" aria-describedby="emailHelp" value="${Element.مكان_الازدياد}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">الحالة  العائلية</label>
+            <input type="text" class="form-control" id="${i}الحالة_العائلية" aria-describedby="emailHelp" value="${Element.الحالة_العائلية}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">الأطفال</label>
+            <input type="text" class="form-control" id="${i}الأطفال" aria-describedby="emailHelp" value="${Element.الأطفال}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">CMR</label>
+            <input type="text" class="form-control" id="${i}CMR" aria-describedby="emailHelp" value="${Element.CMR}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">السنة</label>
+            <input type="text" class="form-control" id="${i}السنة" aria-describedby="emailHelp" value="${Element.السنة}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">المؤسسة المانحة للدبلوم</label>
+            <input type="text" class="form-control" id="${i}المؤسسة_المانحة_للدبلوم" aria-describedby="emailHelp" value="${Element.المؤسسة_المانحة_للدبلوم}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">التخصص</label>
+            <input type="text" class="form-control" id="${i}التخصص" aria-describedby="emailHelp" value="${Element.التخصص}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Fonction</label>
+            <input type="text" class="form-control" id="${i}Fonction" aria-describedby="emailHelp" value="${Element.Fonction}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Date de nomination à la fonction</label>
+            <input type="text" class="form-control" id="${i}Date_de_nomination_à_la_fonction" aria-describedby="emailHelp" value="${Element.Date_de_nomination_à_la_fonction}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">وضعية الموظف</label>
+            <input type="text" class="form-control" id="${i}وضعية_الموظف" aria-describedby="emailHelp" value="${Element.وضعية_الموظف}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">المكان أو الأسباب</label>
+            <input type="text" class="form-control" id="${i}المكان_أو_الأسباب" aria-describedby="emailHelp" value="${Element.المكان_أو_الأسباب}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">التاريخ ابتداء من</label>
+            <input type="text" class="form-control" id="${i}التاريخ_ابتداء_من" aria-describedby="emailHelp" value="${Element.التاريخ_ابتداء_من}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">تاريخ الالتحاق بالعمالة</label>
+            <input type="text" class="form-control" id="${i}تاريخ_الالتحاق_بالعمالة" aria-describedby="emailHelp" value="${Element.تاريخ_الالتحاق_بالعمالة}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">تعيين_م</label>
+            <input type="text" class="form-control" id="${i}تعيين_م" aria-describedby="emailHelp" value="${Element.تعيين_م}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Lieu d'affectation+AR:AX</label>
+            <input type="text" class="form-control" id="${i}Lieu_daffectation" aria-describedby="emailHelp" value="${Element.Lieu_daffectation}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">نوع الموظف</label>
+            <input type="text" class="form-control" id="${i}نوع_الموظف" aria-describedby="emailHelp" value="${Element.نوع_الموظف}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">العنوان</label>
+            <input type="text" class="form-control" id="${i}العنوان" aria-describedby="emailHelp" value="${Element.العنوان}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Adresse personnelle</label>
+            <input type="text" class="form-control" id="${i}Adresse_personnelle" aria-describedby="emailHelp" value="${Element.Adresse_personnelle}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">E_mail</label>
+            <input type="text" class="form-control" id="${i}E_mail" aria-describedby="emailHelp" value="${Element.E_mail}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">télé</label>
+            <input type="text" class="form-control" id="${i}télé" aria-describedby="emailHelp" value="${Element.télé}" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">ملاحظات</label>
+            <input type="text" class="form-control" id="${i}ملاحظات" aria-describedby="emailHelp" value="${Element.ملاحظات}" >
+          </div>
+          
+          
+          
+          
+          
+          
+            
+          
+          
+          <button type="submit" class="btn btn-primary" style="margin-bottom: 12px;">Modifier</button>
+
+                              </form>
+      </div>
+    </div>
+  </div>
+</div>
+                                                  
+                                                  </td>
+                                                  </tr>
+              `
+              
+              e.innerHTML= table
+            tbody.appendChild(e);                                 
+        
+
+            
+
+          
+          /* form.submit() */
+          /* document.querySelector("#submit").submit(); */
+           
+
+            
+          
+          i++
+
+            })
+          for(let j=0;j<i;j++){
+            document.querySelector(`#addworker_frm${j}`).addEventListener('submit',modify)
+            const form=document.querySelector(`#addworker_frm${j}`)
+            _id=form.getAttribute("data")
+          function modify (event){
+          event.preventDefault()
+          const cin =document.querySelector(`#${j}cin`).value
+            const رقم_التأجير =document.querySelector(`#${j}رقم_التأجير`).value
+            const الرقم_المالي =document.querySelector(`#${j}الرقم_المالي`).value
+            const الإسم_الشخصي =document.querySelector(`#${j}الإسم_الشخصي`).value
+            const الإسم_العائلي =document.querySelector(`#${j}الإسم_العائلي`).value
+            const الدرجة =document.querySelector(`#${j}الدرجة`).value
+            const الميزانية =document.querySelector(`#${j}الميزانية`).value
+            const الدبلوم =document.querySelector(`#${j}الدبلوم`).value
+            const التعيين =document.querySelector(`#${j}التعيين`).value
+            const المقاطعة =document.querySelector(`#${j}المقاطعة`).value
+            const المصلحة =document.querySelector(`#${j}المصلحة`).value
+            const الجنس =document.querySelector(`#${j}الجنس`).value
+            const age =document.querySelector(`#${j}age`).value
+            const تاريخ_الإزدياد =document.querySelector(`#${j}تاريخ_الإزدياد`).value
+            const إضافة_الفرق =document.querySelector(`#${j}إضافة_الفرق`).value
+            const التقاعد =document.querySelector(`#${j}التقاعد`).value
+            const تاريخ_الترقبي_في_الرتبة =document.querySelector(`#${j}تاريخ_الترقبي_في_الرتبة`).value
+            const تاريخ_مفعول_الرتبة =document.querySelector(`#${j}تاريخ_مفعول_الرتبة`).value
+            const الرتبة =document.querySelector(`#${j}الرتبة`).value
+            const Grade =document.querySelector(`#${j}Grade`).value
+            const AVANCEMENT_ANCIENTE =document.querySelector(`#${j}AVANCEMENT_ANCIENTE`).value
+            const AVANCEMENTDATECONCOURS =document.querySelector(`#${j}AVANCEMENTDATECONCOURS`).value
+            const تاريخ_الترقية_في_لدرجة =document.querySelector(`#${j}تاريخ_الترقية_في_لدرجة`).value
+            const السلم =document.querySelector(`#${j}السلم`).value
+            const تاريخ_التوظيف =document.querySelector(`#${j}تاريخ_التوظيف`).value
+            const تاريخ_الترسيم =document.querySelector(`#${j}تاريخ_الترسيم`).value
+            const NOM =document.querySelector(`#${j}NOM`).value
+            const PRENOM =document.querySelector(`#${j}PRENOM`).value
+            const مكان_الازدياد =document.querySelector(`#${j}مكان_الازدياد`).value
+            const الحالة_العائلية =document.querySelector(`#${j}الحالة_العائلية`).value
+            const الأطفال =document.querySelector(`#${j}الأطفال`).value
+            const CMR =document.querySelector(`#${j}CMR`).value
+            const السنة =document.querySelector(`#${j}السنة`).value
+            const المؤسسة_المانحة_للدبلوم =document.querySelector(`#${j}المؤسسة_المانحة_للدبلوم`).value
+            const التخصص =document.querySelector(`#${j}التخصص`).value
+            const Fonction =document.querySelector(`#${j}Fonction`).value
+            const Date_de_nomination_à_la_fonction =document.querySelector(`#${j}Date_de_nomination_à_la_fonction`).value
+            const وضعية_الموظف =document.querySelector(`#${j}وضعية_الموظف`).value
+            const المكان_أو_الأسباب =document.querySelector(`#${j}المكان_أو_الأسباب`).value
+            const التاريخ_ابتداء_من =document.querySelector(`#${j}التاريخ_ابتداء_من`).value
+            const تاريخ_الالتحاق_بالعمالة =document.querySelector(`#${j}تاريخ_الالتحاق_بالعمالة`).value
+            const تعيين_م =document.querySelector(`#${j}تعيين_م`).value
+            const Lieu_daffectation =document.querySelector(`#${j}Lieu_daffectation`).value
+            const نوع_الموظف =document.querySelector(`#${j}نوع_الموظف`).value
+            const العنوان =document.querySelector(`#${j}العنوان`).value
+            const Adresse_personnelle =document.querySelector(`#${j}Adresse_personnelle`).value
+            const E_mail =document.querySelector(`#${j}E_mail`).value
+            const télé =document.querySelector(`#${j}télé`).value
+            const ملاحظات =document.querySelector(`#${j}ملاحظات`).value
+
+          axios.post('./api/editworker',{_id,
+            
+          
+          })
+          .then((res)=>{
+            const respond1=document.querySelector(".res");
+            respond1.innerHTML='';
+            const e= document.createElement('div');
+
+            if(res.data.status==="ok"){
+              e.innerHTML=`<div class="alert alert-success" role="alert">
+                Données Modifiées avec succès
+                                      </div>`
+               respond1.appendChild(e);
+                                
+
+            }
+
+          })
+          function response(res){
+            
+          }
+
+
+          }
+          }
+
+          }
+
+          
+          axios.get('./api/getworker').then((res)=>display(res))
+          
+
+          function checking(res){
+            const respond = document.querySelector('.addres')
+            respond.innerHTML='';
+            const e= document.createElement('div');
+            if (res.data.status === 'ok') {
+					
+                    e.innerHTML=`<div class="alert alert-success" role="alert">
+                      employé ajouté avec succès
+                                      </div>`
+                    respond.appendChild(e);
+				} else {
+                    e.innerHTML=`<div class="alert alert-danger" role="alert">
+                        Il y'a un employé avec le méme cin
+                                      </div>`
+                    respond.appendChild(e);
+				}
+          }
+
+          const form =document.querySelector("#addworker_frm")
+          form.addEventListener('submit',addworker)
+
+          function addworker(event){
+            event.preventDefault()
+            
+            const cin =document.querySelector('#cin').value
+            const رقم_التأجير =document.querySelector('#رقم_التأجير').value
+            const الرقم_المالي =document.querySelector('#الرقم_المالي').value
+            const الإسم_الشخصي =document.querySelector('#الإسم_الشخصي').value
+            const الإسم_العائلي =document.querySelector('#الإسم_العائلي').value
+            const الدرجة =document.querySelector('#الدرجة').value
+            const الميزانية =document.querySelector('#الميزانية').value
+            const الدبلوم =document.querySelector('#الدبلوم').value
+            const التعيين =document.querySelector('#التعيين').value
+            const المقاطعة =document.querySelector('#المقاطعة').value
+            const المصلحة =document.querySelector('#المصلحة').value
+            const الجنس =document.querySelector('#الجنس').value
+            const age =document.querySelector('#age').value
+            const تاريخ_الإزدياد =document.querySelector('#تاريخ_الإزدياد').value
+            const إضافة_الفرق =document.querySelector('#إضافة_الفرق').value
+            const التقاعد =document.querySelector('#التقاعد').value
+            const تاريخ_الترقبي_في_الرتبة =document.querySelector('#تاريخ_الترقبي_في_الرتبة').value
+            const تاريخ_مفعول_الرتبة =document.querySelector('#تاريخ_مفعول_الرتبة').value
+            const الرتبة =document.querySelector('#الرتبة').value
+            const Grade =document.querySelector('#Grade').value
+            const AVANCEMENT_ANCIENTE =document.querySelector('#AVANCEMENT_ANCIENTE').value
+            const AVANCEMENTDATECONCOURS =document.querySelector('#AVANCEMENTDATECONCOURS').value
+            const تاريخ_الترقية_في_لدرجة =document.querySelector('#تاريخ_الترقية_في_لدرجة').value
+            const السلم =document.querySelector('#السلم').value
+            const تاريخ_التوظيف =document.querySelector('#تاريخ_التوظيف').value
+            const تاريخ_الترسيم =document.querySelector('#تاريخ_الترسيم').value
+            const NOM =document.querySelector('#NOM').value
+            const PRENOM =document.querySelector('#PRENOM').value
+            const مكان_الازدياد =document.querySelector('#مكان_الازدياد').value
+            const الحالة_العائلية =document.querySelector('#الحالة_العائلية').value
+            const الأطفال =document.querySelector('#الأطفال').value
+            const CMR =document.querySelector('#CMR').value
+            const السنة =document.querySelector('#السنة').value
+            const المؤسسة_المانحة_للدبلوم =document.querySelector('#المؤسسة_المانحة_للدبلوم').value
+            const التخصص =document.querySelector('#التخصص').value
+            const Fonction =document.querySelector('#Fonction').value
+            const Date_de_nomination_à_la_fonction =document.querySelector('#Date_de_nomination_à_la_fonction').value
+            const وضعية_الموظف =document.querySelector('#وضعية_الموظف').value
+            const المكان_أو_الأسباب =document.querySelector('#المكان_أو_الأسباب').value
+            const التاريخ_ابتداء_من =document.querySelector('#التاريخ_ابتداء_من').value
+            const تاريخ_الالتحاق_بالعمالة =document.querySelector('#تاريخ_الالتحاق_بالعمالة').value
+            const تعيين_م =document.querySelector('#تعيين_م').value
+            const Lieu_daffectation =document.querySelector('#Lieu_daffectation').value
+            const نوع_الموظف =document.querySelector('#نوع_الموظف').value
+            const العنوان =document.querySelector('#العنوان').value
+            const Adresse_personnelle =document.querySelector('#Adresse_personnelle').value
+            const E_mail =document.querySelector('#E_mail').value
+            const télé =document.querySelector('#télé').value
+            const ملاحظات =document.querySelector('#ملاحظات').value
+
+            axios.post('/api/addworker',{
+              الرقم_المالي,cin,رقم_التأجير,
+              الإسم_الشخصي ,
+    الإسم_العائلي ,
+    الدرجة ,
+            الميزانية ,
+            الدبلوم ,
+            التعيين ,
+            المقاطعة ,
+            المصلحة ,
+            الجنس ,
+            age ,
+            تاريخ_الإزدياد ,
+            إضافة_الفرق ,
+            التقاعد ,
+            تاريخ_الترقبي_في_الرتبة ,
+            تاريخ_مفعول_الرتبة ,
+            الرتبة ,
+            Grade ,
+            AVANCEMENT_ANCIENTE ,
+            AVANCEMENTDATECONCOURS ,
+            تاريخ_الترقية_في_لدرجة ,
+            السلم ,
+            تاريخ_التوظيف ,
+            تاريخ_الترسيم ,
+            NOM ,
+            PRENOM ,
+            مكان_الازدياد ,
+            الحالة_العائلية ,
+            الأطفال ,
+            CMR ,
+            السنة ,
+            المؤسسة_المانحة_للدبلوم ,
+            التخصص ,
+            Fonction ,
+            Date_de_nomination_à_la_fonction ,
+            وضعية_الموظف ,
+            المكان_أو_الأسباب ,
+            التاريخ_ابتداء_من ,
+            تاريخ_الالتحاق_بالعمالة ,
+            تعيين_م ,
+            Lieu_daffectation ,
+            نوع_الموظف ,
+            العنوان ,
+            Adresse_personnelle ,
+            E_mail ,
+            télé ,
+            ملاحظات ,
+            }).then((res)=>checking(res))
+
+
+          }
+          
+          
+          const recherche_frm=document.querySelector("#recherche_frm")
+          recherche_frm.addEventListener("submit",recherch)
+          function recherch(event){
+            
+            event.preventDefault()
+            const recherche_input=document.querySelector("#recherche_input").value
+            data=recherche_frm.getAttribute("data")
+            axios.post('/api/recherche',{
+              recherche_input,data
+            }).then((res)=>display(res))
+
+          }
+          function recherche_id(){
+            recherche_frm.setAttribute("data","id")
+            
+          }
+          function recherche_Nom(){
+            recherche_frm.setAttribute("data","Nom")
+            
+          }
+          function recherche_3(){
+            recherche_frm.setAttribute("data","3")
+            
+          }
+          
+          axios.get('/api/getdemande').then((res)=>Notification(res))  
+          // Create WebSocket connection.
+          const socket = new WebSocket('ws://localhost:3000');
+
+          // Connection opened
+          socket.addEventListener('open', function (event) {
+              console.log('Connected to WS Server')
+          });
+          // Listen for messages
+          socket.addEventListener('message', function (event) {
+            event.data.text().then(txt=>getNotification(txt))  
+            
+            console.log("new demande")
+            
+          });
+          
+                                            
+
+
+
+    
+          
+        </script>
+        
+        <script src="../../assets/plugins/jquery/jquery-3.4.1.min.js"></script>
+        <script src="https://unpkg.com/@popperjs/core@2"></script>
+        <script src="../../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+        <script src="https://unpkg.com/feather-icons"></script>
+        <script src="../../assets/plugins/perfectscroll/perfect-scrollbar.min.js"></script>
+        <script src="../../assets/js/main.min.js"></script>
+    </body>
+</html>

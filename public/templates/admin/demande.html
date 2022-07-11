@@ -111,7 +111,7 @@
                     respond.appendChild(e)
 
 
-                   /*  //socket Connection
+                    //socket Connection
                     const socket = new WebSocket('ws://localhost:3000');
 
                     // Connection opened
@@ -119,7 +119,7 @@
                         console.log(res.data);
                         console.log('Connected to WS Server')
                         socket.send(res.data.cin);
-                    }); */
+                    });
                 }
                 else {
                     e.innerHTML=`<div class="alert alert-${res.data.badge}" role="alert">
@@ -131,15 +131,7 @@
                 }
 
                 
-                 //socket Connection
-                 const socket = new WebSocket('ws://localhost:3000');
-
-// Connection opened
-socket.addEventListener('open', function (event) {
-    console.log(res.data);
-    console.log('Connected to WS Server')
-    socket.send(res.data.cin);
-});
+                 
                 
 
             }

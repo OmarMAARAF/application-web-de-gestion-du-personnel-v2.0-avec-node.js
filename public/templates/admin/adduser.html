@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Responsive Admin Dashboard Template">
+        <meta name="keywords" content="admin,dashboard">
+        <meta name="author" content="stacks">
+        <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        
+        <!-- Title -->
+        <title>Ajouter Des Utilisateurs</title>
+
+        <!-- Styles -->
+        <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700,800&display=swap" rel="stylesheet">
+        <link href="../../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../assets/plugins/font-awesome/css/all.min.css" rel="stylesheet">
+        <link href="../../assets/plugins/perfectscroll/perfect-scrollbar.css" rel="stylesheet">
+        <link href="../../assets/plugins/apexcharts/apexcharts.css" rel="stylesheet">
+
+      
+        <!-- Theme Styles -->
+        <link href="../../assets/css/main.min.css" rel="stylesheet">
+        <link href="../../assets/css/dark-theme.css" rel="stylesheet">
+        <link href="../../assets/css/custom.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+
+        <div class="page-container">
+          <div class="page-header">
+            <nav class="navbar navbar-expand-lg d-flex justify-content-between">
+              <div class="" id="navbarNav">
+                <ul class="navbar-nav" id="leftNav">
+                  <li class="nav-item">
+                    <a class="nav-link" id="sidebar-toggle" href="#"><i data-feather="arrow-left"></i></a>
+                  </li>
+                  
+                </ul>
+                </div>
+                <div class="logo">
+                  <a class="navbar-brand" href="index.html"></a>
+                </div>
+                <div class="" id="headerNav">
+                  <ul class="navbar-nav" id="Mynav">
+                    <li class="nav-item dropdown">
+                      <a class="nav-link search-dropdown" href="#" id="searchDropDown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i data-feather="search"></i></a>
+                      <div class="dropdown-menu dropdown-menu-end dropdown-lg search-drop-menu" aria-labelledby="searchDropDown">
+                        <form>
+                          <input class="form-control" type="text" placeholder="Type something.." aria-label="Search">
+                        </form>
+                        <h6 class="dropdown-header">Recent Searches</h6>
+                        <a class="dropdown-item" href="#">charts</a>
+                        <a class="dropdown-item" href="#">new orders</a>
+                        <a class="dropdown-item" href="#">file manager</a>
+                        <a class="dropdown-item" href="#">new users</a>
+                      </div>
+                    </li>
+                    
+                    <li class="nav-item dropdown" id="befor">
+                      <a class="nav-link profile-dropdown" href="#" id="profileDropDown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="../../assets/images/avatars/profile-image.png" alt=""></a>
+                      <div class="dropdown-menu dropdown-menu-end profile-drop-menu" aria-labelledby="profileDropDown">
+                        
+                        <a class="dropdown-item" href="#"><i data-feather="log-out"></i>Déconnecter</a>
+                      </div>
+                    </li>
+                  </ul>
+              </div>
+            </nav>
+        </div>  
+
+
+            <div class="page-sidebar">
+              <ul class="list-unstyled accordion-menu">
+                <li class="sidebar-title">
+                  Main
+                </li>
+                <li>
+                  <a href="index.html"><i data-feather="home"></i>Dashboard</a>
+                </li>
+                <li class="active-page">
+                  <a href="adduser.html"><i data-feather="plus-circle"></i>Add user</a>
+                </li>
+                <li >
+                  <a href="liste_demande.html"><i data-feather="edit"></i>Demandes</a>
+                </li>
+                <li >
+                  <a href="liste_worker.html"><i data-feather="user"></i>Employés</a>
+                </li>
+              </ul>
+            </div>
+            <div class="page-content">
+              <div class="main-wrapper">
+                <div class="row">
+                  <div class="col">
+                      <div class="card">
+                          <div class="card-body">
+                              <center>
+                              <h5 class="card-title">Ajouter Des Utilisateurs</h5>
+                            </center>
+                              <p class="card-description">Entrer Email et le mot de passe de l'utilisateur à ajouter.</p>
+                              <div class="res">
+
+                              </div>
+
+
+                              <form id="adduser_frm">
+                                  <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Nom d'utilisateur</label>
+                                    <input type="text" class="form-control" id="username" aria-describedby="emailHelp" >
+                                    
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" >
+                                    
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Mot de passe</label>
+                                    <input type="password" class="form-control" id="password" >
+                                  </div>
+                                  
+                                  <button type="submit" class="btn btn-primary">Valider</button>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              
+            </div>
+        </div>
+        
+        
+        <!-- Javascripts -->
+        <script src="../../assets/js/notification.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script>
+          function checking(res){
+            const respond = document.querySelector('.res')
+            respond.innerHTML='';
+            const e= document.createElement('div');
+            if (res.data.status === 'ok') {
+					// everythign went fine
+					
+                    e.innerHTML=`<div class="alert alert-success" role="alert">
+                        votre compte a été créé avec succès
+                                      </div>`
+                    respond.appendChild(e);
+                    console.log("Success")
+				} else {
+                    e.innerHTML=`<div class="alert alert-danger" role="alert">
+                        ${res.data.error}
+                                      </div>`
+                    respond.appendChild(e);
+				}
+          }
+
+          const form =document.querySelector("#adduser_frm")
+          form.addEventListener('submit',adduser)
+
+          function adduser(event){
+            event.preventDefault()
+            const username =document.querySelector('#username').value
+            const email =document.querySelector('#email').value
+            const password =document.querySelector('#password').value
+            passwordconf=password
+            axios.post('/api/register',{
+            username,email,password,passwordconf
+            }).then((res)=>checking(res))
+
+
+          }
+
+
+          axios.get('/api/getdemande').then((res)=>Notification(res))
+          // Create WebSocket connection.
+          const socket = new WebSocket('ws://localhost:3000');
+
+          // Connection opened
+          socket.addEventListener('open', function (event) {
+              console.log('Connected to WS Server')
+          });
+          // Listen for messages
+          socket.addEventListener('message', function (event) {
+            event.data.text().then(txt=>getNotification(txt))  
+            
+            axios.get('./api/getdemande').then((res)=>display(res))
+            console.log("new demande")
+            
+          });
+          
+        </script>
+
+        <script src="../../assets/plugins/jquery/jquery-3.4.1.min.js"></script>
+        <script src="https://unpkg.com/@popperjs/core@2"></script>
+        <script src="../../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+        <script src="https://unpkg.com/feather-icons"></script>
+        <script src="../../assets/plugins/perfectscroll/perfect-scrollbar.min.js"></script>
+        <script src="../../assets/plugins/apexcharts/apexcharts.min.js"></script>
+        <script src="../../assets/js/main.min.js"></script>
+        <script src="../../assets/js/pages/dashboard.js"></script>
+        <script src="../../assets/js/calendar.js"></script>
+    </body>
+</html>
