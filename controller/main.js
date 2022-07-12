@@ -21,6 +21,7 @@ const login =async (req,res)=>{
             id : user1._id,
             email:user1.email,
             username:user1.username,
+            usertype:user1.usertype,
         },JWT_SECRET)
         console.log(token)
         return   res.json({status:'ok',data:token})

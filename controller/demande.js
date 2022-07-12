@@ -1,4 +1,6 @@
 const demande = require('../models/demande');
+const jwt =require('jsonwebtoken');
+const JWT_SECRET='sfdqd';
 const refuseDmd =async (req,res)=>{
     const {id}=req.body;
     const demande1 =await demande.findByIdAndUpdate(id,{$set:{etat:'refus'}})
@@ -19,13 +21,15 @@ const valideDmd =async(req,res)=>{
 
 const getdemande = async (req,res)=>{
     try{
-
+        const token =req.body
+        
+        const user1=jwt.verify(token.token,JWT_SECRET)
         const allDmd1= await demande.find({etat:'En attente'}) 
         const allDmd2= await demande.find({etat:'valide'})
         const allDmd3= await demande.find({etat:'refus'})
         const allDmd = allDmd1.concat(allDmd2,allDmd3)
        /*  socket.socket.send(allDmd1); */
-        res.status(200).json({status:'ok',demande:allDmd,attente :allDmd1})
+        res.status(200).json({status:'ok',demande:allDmd,attente :allDmd1,usertype:user1.usertype})
     }
     catch(error){
         res.status(500).json({msg:error})

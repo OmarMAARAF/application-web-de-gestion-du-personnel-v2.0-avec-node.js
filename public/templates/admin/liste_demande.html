@@ -91,7 +91,7 @@
                   <li >
                     <a href="adduser.html"><i data-feather="plus-circle"></i>Add user</a>
                   </li>
-                  
+                  <li>
                     <a href="liste_worker.html"><i data-feather="user"></i>Employés</a>
                   </li>
                 </ul>
@@ -150,6 +150,9 @@
         <script src="../../assets/js/notification.js"></script>
         <script>
           function display(res){
+            const usertype=res.data.usertype
+            console.log(usertype);
+            
             const tbody = document.querySelector('table');
             tbody.innerHTML=`
             <thead>
@@ -174,8 +177,10 @@
                                                   <td>${Element.nb_jour}</td>
                                                   <td>${Element.date_depart}</td>`
                                                   if(Element.etat === "En attente"){
+                                                    if(usertype==="admin"){
               table +=`
               <td><span class="badge bg-warning">${Element.etat}</span></td>
+              
               <td>
                                                   <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModalCenter${i}">
                                                     Validée
@@ -225,10 +230,18 @@
                                                    
                                                   </td>
                                                   </tr>
-              `
+              `}
+              else{
+                table+=`<td><span class="badge bg-warning">${Element.etat}</span></td>
+              
+              <td>--
+                </td>
+                </tr>`
+              }
               i++
                                                 }
               else if(Element.etat === "valide"){
+                if(usertype==="admin"){
                 table +=`<td><span class="badge bg-success">Validée</span></td>
                                                   <td>
                                                   
@@ -264,10 +277,25 @@
 
                                                   </td>
                                                   
-                                                </tr>`
+                                                </tr>`}
+                                                else{
+                                                  table+=`
+                                                  <td><span class="badge bg-success">Validée</span></td>
+                                                  <td>
+                                                    <a href="../Doc/text.txt" download="my_file.txt">
+                                                    <button type="button" class="btn btn-primary">
+                                                      Extraire
+                                                    </button>
+                                                    </a>
+                                                  </td>
+                                                  </tr>
+
+                                                  `
+                                                }
                                                 i++
               }
               else if (Element.etat === 'refus'){
+                if(usertype==="admin"){
                 
                 table +=`<td><span class="badge bg-danger" style="background-color: #fc7878;">Refusée</span></td>
                                                   <td>
@@ -294,6 +322,16 @@
                                                     </td>
                                                     
                                                   </tr>`
+                                                }
+                                                else{
+                                                  table+=`
+                                                  <td><span class="badge bg-danger" style="background-color: #fc7878;">Refusée</span></td>
+                                                  <td>
+                                                    --
+                                                    </td>
+                                                    </tr>
+                                                  `
+                                                }
                 i++
               }
               
@@ -304,8 +342,8 @@
         }
         
 
-          axios.get('./api/getdemande').then((res)=>display(res))
-          axios.get('/api/getdemande').then((res)=>Notification(res))
+          axios.post('./api/getdemande',{token:localStorage.getItem('token')}).then((res)=>display(res))
+          axios.post('./api/getdemande',{token:localStorage.getItem('token')}).then((res)=>Notification(res))
 
           
           // Create WebSocket connection.
