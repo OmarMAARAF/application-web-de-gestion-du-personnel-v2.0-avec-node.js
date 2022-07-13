@@ -39,7 +39,6 @@ function setHTML(res){
 
 
 function Notification(res){
-  
   if(res.data.status ==="ok"){
     ele=document.querySelector("#Mynoti")
     if(!ele){
@@ -59,7 +58,8 @@ function Notification(res){
 }
 
 function getNotification(txt){
-  axios.get('/api/getdemande').then((res)=>Notification(res))
+  axios.post("./api/getdemande", { token: localStorage.getItem("token") })
+  .then((res) => Notification(res));
   displayNotification(txt)
 }
 

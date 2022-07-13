@@ -1,4 +1,6 @@
 const demande = require('../models/demande');
+const workerSchema = require('../models/worker.js');
+
 const jwt =require('jsonwebtoken');
 const JWT_SECRET='sfdqd';
 const refuseDmd =async (req,res)=>{
@@ -28,6 +30,7 @@ const getdemande = async (req,res)=>{
         const allDmd2= await demande.find({etat:'valide'})
         const allDmd3= await demande.find({etat:'refus'})
         const allDmd = allDmd1.concat(allDmd2,allDmd3)
+
        /*  socket.socket.send(allDmd1); */
         res.status(200).json({status:'ok',demande:allDmd,attente :allDmd1,usertype:user1.usertype})
     }
@@ -39,13 +42,26 @@ const getdemande = async (req,res)=>{
 
 const insertDemande=async (req,res) =>{
     const {cin,nb_jour,date_depart,type}=req.body
+    
     const demande1 = await demande.findOne({cin,nb_jour,date_depart,type}).lean()
-
-
+    
+    
     
 
     if(!demande1){
-        const createdemande = demande.create({cin,nb_jour,date_depart,type})
+        try{
+            console.log("cin est ",cin);
+            const info =await workerSchema.findOne({cin:cin}).lean()
+            const nom= info.NOM+" "+info.PRENOM
+            const grade=info.Grade
+            const createdemande = demande.create({cin,nb_jour,date_depart,type,nom,grade})
+            
+        }
+        catch(error){
+            res.status(500).json({msg:error})
+        }
+        
+        
 
     }
     else{

@@ -176,7 +176,9 @@
           }
 
 
-          axios.get('/api/getdemande').then((res)=>Notification(res))
+          axios
+  .post("./api/getdemande", { token: localStorage.getItem("token") })
+  .then((res) => Notification(res));
           // Create WebSocket connection.
           const socket = new WebSocket('ws://localhost:3000');
 

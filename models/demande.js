@@ -6,7 +6,9 @@ const demandeSchema =new mongoose.Schema({
     date_depart: {type: String,required : true},
     type:{type:String,required : true},
     etat:{type:String,default : "En attente"},
-    prise:{type:String,default:mydate}
+    prise:{type:String,default:mydate},
+    nom:{type:String},
+    grade:{type:String},
 },{
     collation : { locale: 'en_US', strength: 1 }
 })
