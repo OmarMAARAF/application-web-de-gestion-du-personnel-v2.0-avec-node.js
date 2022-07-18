@@ -52,7 +52,7 @@
           </ul>
         </div>
         <div class="logo">
-          <a class="navbar-brand" href="index.html"></a>
+          <a href="liste_demande.html"><img src="../../assets/images/LOGO.png" alt="" style="width: 50px;"></a>
         </div>
         <div class="" id="headerNav">
           <ul class="navbar-nav" id="Mynav">
@@ -155,7 +155,7 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalCenterTitle">Validée La Demande</h5>
+            <h5 class="modal-title" id="exampleModalCenterTitle">Valider La Demande</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -163,7 +163,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermée</button>
-            <a  id="validationlink">  <button type="button" class="btn btn-success" id="valide" data="${Element._id}">Validée</button> </a> 
+            <a  id="validationlink">  <button type="button" class="btn btn-success" id="valide" data="${Element._id}">Valider</button> </a> 
           </div>
         </div>
       </div>
@@ -175,7 +175,7 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalCenterTitle">Refusée La Demade</h5>
+            <h5 class="modal-title" id="exampleModalCenterTitle">Refuser La Demade</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -183,7 +183,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermée</button>
-            <a  id="denyingLink">  <button type="button" class="btn btn-danger" style="background-color: #fc7878;">Refusée</button> </a>
+            <a  id="denyingLink">  <button type="button" class="btn btn-danger" style="background-color: #fc7878;">Refuser</button> </a>
 
             </div>
         </div>
@@ -239,10 +239,10 @@
           
           <td>
                                               <button type="button" class="btn btn-success" onClick="showValidationModal('${Element._id}')" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" >
-                                                Validée
+                                                Valider
                                               </button>
                                               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter2" style="background-color: #fc7878;" onclick="showDenyingModal('${Element._id}')">
-                                                Refusée
+                                                Refuser
                                               </button>
           </td>
         </tr> 
@@ -256,11 +256,11 @@
       }
     } else if (Element.etat === "valide") {
       if (usertype === "admin") {
-        table += `<td><span class="badge bg-success">Validée</span></td>
+        table += `<td><span class="badge bg-success">Valider</span></td>
                                               <td>
                                               
                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter2" style="background-color: #fc7878;" onclick="showDenyingModal('${Element._id}')">
-                                                Refusée
+                                                Refuser
                                               </button>
 
                                             
@@ -276,7 +276,7 @@
                                             </tr>`;
       } else {
         table += `
-                                              <td><span class="badge bg-success">Validée</span></td>
+                                              <td><span class="badge bg-success">Valider</span></td>
                                               <td>
                                               <button type="button" class="btn btn-primary" onclick="genPDF('${Element.nb_jour}','1','1','${Element.cin}')">
                                               Extraire
@@ -288,17 +288,17 @@
       }
     } else if (Element.etat === "refus") {
       if (usertype === "admin") {
-        table += `<td><span class="badge bg-danger" style="background-color: #fc7878;">Refusée</span></td>
+        table += `<td><span class="badge bg-danger" style="background-color: #fc7878;">Refuser</span></td>
             <td>
                                               <button type="button" class="btn btn-success" onClick="showValidationModal('${Element._id}')" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" >
-                                                Validée
+                                                Valider
                                               </button>
                                               </td>
                                                 
                                               </tr>`;
       } else {
         table += `
-                                              <td><span class="badge bg-danger" style="background-color: #fc7878;">Refusée</span></td>
+                                              <td><span class="badge bg-danger" style="background-color: #fc7878;">Refuser</span></td>
                                               <td>
                                                 --
                                                 </td>
@@ -340,25 +340,20 @@ function showValidationModal(id) {
     "href",
     `./getdemande.html?action=valide&id=${id}`
   );
-  console.log(validationLink);
 }
 function showDenyingModal(id) {
-  console.log("id is :", id);
   const denyingLink = document.querySelector("#denyingLink");
   denyingLink.setAttribute("href", `/getdemande.html?action=refus&id=${id}`);
-  console.log(denyingLink);
 }
 
 function genPDF(type,jr, nom, grade, cin,depart) {
   
-  console.log(type,jr, nom, grade, cin);
   if(type==="Demande de congé"){
   let doc = new jsPDF();
   let img = new Image();
   img.src = "conge_p1.png";
   let img2 = new Image();
   img2.src = "conge_p2.png";
-  console.log(img2)
   img.onload = () => {
     doc.addImage(img, "png", 0, 0, 220, 150);
     doc.addImage(img2, "png", 0, 160, 210, 80);

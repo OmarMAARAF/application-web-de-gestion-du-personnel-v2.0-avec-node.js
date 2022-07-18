@@ -32,6 +32,7 @@ const getdemande = async (req,res)=>{
         const allDmd = allDmd1.concat(allDmd2,allDmd3)
 
        /*  socket.socket.send(allDmd1); */
+       
         res.status(200).json({status:'ok',demande:allDmd,attente :allDmd1,usertype:user1.usertype})
     }
     catch(error){

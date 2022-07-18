@@ -5,6 +5,8 @@ let text =``
 
 function setHTML(res){
   
+  
+  
   attente = res.data.attente
   e.setAttribute("class","nav-item dropdown")
   e.setAttribute("id","Mynoti")
@@ -39,6 +41,8 @@ function setHTML(res){
 
 
 function Notification(res){
+  
+
   if(res.data.status ==="ok"){
     ele=document.querySelector("#Mynoti")
     if(!ele){

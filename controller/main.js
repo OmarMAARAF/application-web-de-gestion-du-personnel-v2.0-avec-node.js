@@ -1,6 +1,7 @@
 const user =require('../models/user')
 const bcrypt =require('bcryptjs');
 const jwt =require('jsonwebtoken');
+const session = require('express-session');
 const JWT_SECRET='sfdqd';
 
 const login =async (req,res)=>{
@@ -16,15 +17,19 @@ const login =async (req,res)=>{
         return res.json({status:'error',error:'Invalide Password or username'})
     }
     if(await bcrypt.compare(password,user1.password)){
-        console.log(user1._id);
         const token = jwt.sign({//this information are visible in the browser
             id : user1._id,
             email:user1.email,
             username:user1.username,
             usertype:user1.usertype,
         },JWT_SECRET)
-        console.log(token)
+        //put the variable in session-cookies
+        /* res.cookie("token",token,{
+             httpOnly: true, secure: true, maxAge: 1000 * 60 * 60 * 24 
+        }) */
+
         return   res.json({status:'ok',data:token})
+
     }
 
 

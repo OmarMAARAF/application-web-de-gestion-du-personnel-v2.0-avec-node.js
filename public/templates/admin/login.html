@@ -43,7 +43,7 @@
                     <div class="card login-box-container">
                         <div class="card-body">
                             <div class="authent-logo">
-                                <img src="../../assets/images/logo@2x.png" alt="">
+                                <img src="../../assets/images/LOGO.png" alt="" style="width: 50px;">
                             </div>
                             <div class="authent-text">
                                 <p>Connexion</p>
@@ -91,10 +91,10 @@
                 const e= document.createElement('div');
                 if (res.data.status === 'ok') {
 					// everythign went fine
-					
+					localStorage.setItem('token',res.data.data)
                     location.href = "/index.html";
                     
-                    localStorage.setItem('token',res.data.data)
+                    
 
 				} else {
                     e.innerHTML=`<div class="alert alert-danger" role="alert">
