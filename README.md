@@ -13,11 +13,8 @@ NPM / Yarn and Node.js installed
 
 Installing NPM modules on both public and server folders
 
-Execute these commands from the project directory
+Execute this command in the project directory
 
-```
-cd public && npm install
-```
 
 ```
 cd server && npm install
@@ -30,7 +27,6 @@ Open a terminal on server directory
 ```
 npm start
 ```
-
 
 
 Access the web app at http://localhost:3000/
