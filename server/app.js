@@ -25,8 +25,8 @@ wss.on("connection", function connection(ws) {
 });
 
 //middleware
-app.use(express.static(path.join(__dirname, "public")));
-app.use("/", express.static(path.join(__dirname, "public/templates/admin/")));
+app.use(express.static(path.join(__dirname, "../public")));
+app.use("/", express.static(path.join(__dirname, "../public/templates/admin/")));
 app.use(express.json());
 
 // creating 24 hours from milliseconds
@@ -45,16 +45,19 @@ app.use(
 //router
 app.use("/api", router);
 
-//404 and 500 pages
+/* //404 and 500 pages
 app.use((req, res, next) => {
   res
     .status(404)
-    .sendFile(path.join(__dirname, "public/templates/admin/404.html"));
+    .sendFile(path.join(__dirname, "../public/templates/admin/404.html"));
   res
     .status(500)
-    .sendFile(path.join(__dirname, "public/templates/admin/500.html"));
+    .sendFile(path.join(__dirname, "../public/templates/admin/500.html"));
 });
-
+ */
+app.get('*', function(req, res){
+  res.status(404).sendFile(path.join(__dirname, "../public/templates/admin/404.html"));
+});
 const port = 3000;
 const start = async () => {
   try {
