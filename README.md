@@ -35,4 +35,21 @@ Access the web app at http://localhost:3000/
 
 Go following link http://localhost:3000/login.html to acces your account 
 
-<h3>Admin</h3>
+<h4>Admin</h4>
+email:
+```
+admin@gmail.com
+```
+password:
+```
+admin123
+```
+<h4>user</h4>
+email:
+```
+user@gmail.com
+```
+password:
+```
+user123
+```
